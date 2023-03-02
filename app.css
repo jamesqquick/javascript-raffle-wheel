@@ -27,14 +27,14 @@ body {
 
   #arrow {
     position: absolute;
-    transform: translate(-70%, -70%);
-    top: 50%;
-    left: 0%;
+    transform: translate(-50%, 0);
+    top: -10%;
+    left: 50%;
     width: 0; 
     height: 0; 
-    border-top: 40px solid transparent;
-    border-bottom: 40px solid transparent;
-    border-left: 120px solid #fdcf3b;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-top: 120px solid #fdcf3b;
     border-radius: 60px;
   }
 

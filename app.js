@@ -50,18 +50,20 @@ const renderChart = (names) => {
   myChart.update();
 };
 
-const displayWinner = (angle, numOptions) => {
-  const choiceAngleLength = 360 / numOptions;
-  const adaptedAngle = (angle + 270) % 360;
-  const winnerIndex = Math.floor(adaptedAngle / choiceAngleLength);
-  const winnerName = myChart.data.labels[winnerIndex];
-  finalValue.innerHTML = `<p>Winner: ${winnerName} </p>`;
+const displayWinner = (angle, labels) => {
+  const choiceAngleLength = 360 / labels.length;
+  const inversedAngle = 360 - angle;
+  const winnerIndex = Math.floor(inversedAngle / choiceAngleLength);
+  const winnerName = labels[winnerIndex];
+  finalValue.innerText = `Winner: ${winnerName}`;
   spinBtn.disabled = false;
+  namesInput.disabled = false;
 };
 
 spinBtn.addEventListener('click', () => {
   spinBtn.disabled = true;
-  finalValue.innerHTML = `<p>Good Luck!</p>`;
+  namesInput.disabled = true;
+  finalValue.innerHTML = `<p>Spinning...</p>`;
   const finalDegree = Math.floor(Math.random() * 360);
 
   let rotationAngle = 101;
@@ -82,7 +84,7 @@ spinBtn.addEventListener('click', () => {
       numRotations > MAX_ROTATIONS &&
       myChart.options.rotation == finalDegree
     ) {
-      displayWinner(finalDegree, myChart.data.labels.length);
+      displayWinner(finalDegree, myChart.data.labels);
       clearInterval(rotationInterval);
       numRotations = 0;
       rotationAngle = 101;
